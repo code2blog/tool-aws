@@ -6,5 +6,8 @@ Here are some of the projects in this repository
 
 API/code2blog_demo_rest
 	dr1 expose a rest endpoint that replies with json message
+
+standards
+	s1 define file naming standards
 	
 </pre>

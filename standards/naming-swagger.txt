@@ -1,0 +1,4 @@
+default standard followed by aws during export of swagger files are
+- {api_name}-{stage}-swagger.json
+- {api_name}-{stage}-swagger-apigateway.json 
+Here the keyword apigateway indicates that it contains implementation details
