@@ -14,5 +14,8 @@ standards
 	
 lambda-java/code2blog_lambda_demo
 	ld1 send some string response from lambda
+
+codepen
+	ir1 write js code that invokes rest api of aws
 	
 </pre>
