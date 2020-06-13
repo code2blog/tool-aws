@@ -12,4 +12,7 @@ API/code2blog_demo_rest
 standards
 	s1 define file naming standards
 	
+lambda-java/code2blog_lambda_demo
+	ld1 send some string response from lambda
+	
 </pre>
