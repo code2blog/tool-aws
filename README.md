@@ -8,6 +8,7 @@ API/code2blog_demo_rest
 	dr1 expose a rest endpoint that replies with json message
 	dr2.1 authenticate rest endpoint using api key
 	dr2.2 create custom http response header
+	dr3 invoke lambda and use cors headers
 	
 standards
 	s1 define file naming standards
