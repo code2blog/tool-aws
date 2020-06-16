@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "demo the use of aws rest api",
-    "version": "2020-06-13T07:42:48Z",
+    "version": "2020-06-16T17:28:50Z",
     "title": "code2blog_demo_rest"
   },
   "host": "cow8lutdyg.execute-api.us-east-2.amazonaws.com",
@@ -41,6 +41,9 @@
     },
     "/invoke-lambda": {
       "get": {
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -54,6 +57,43 @@
               "Access-Control-Allow-Origin": {
                 "type": "string"
               }
+            }
+          }
+        }
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/Empty"
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/Empty"
             }
           }
         }
