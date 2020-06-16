@@ -17,13 +17,13 @@ public class Hello implements RequestHandler<Map<String,String>, String> {
     public String handleRequest(Map<String,String> event, Context context)
     {
         LambdaLogger logger = context.getLogger();
-        String response = new String("200 OK");
+        String response = new String("200 OK from java");
         // log execution details
-        logger.log("ENVIRONMENT VARIABLES: " + gson.toJson(System.getenv()));
-        logger.log("CONTEXT: " + gson.toJson(context));
-        // process event
-        logger.log("EVENT: " + gson.toJson(event));
-        logger.log("EVENT TYPE: " + event.getClass().toString());
+//        logger.log("ENVIRONMENT VARIABLES: " + gson.toJson(System.getenv()));
+//        logger.log("CONTEXT: " + gson.toJson(context));
+//        // process event
+//        logger.log("EVENT: " + gson.toJson(event));
+//        logger.log("EVENT TYPE: " + event.getClass().toString());
         return response;
     }
 }
