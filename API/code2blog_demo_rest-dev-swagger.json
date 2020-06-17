@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "demo the use of aws rest api",
-    "version": "2020-06-16T17:28:50Z",
+    "version": "2020-06-17T14:09:02Z",
     "title": "code2blog_demo_rest"
   },
   "host": "cow8lutdyg.execute-api.us-east-2.amazonaws.com",
@@ -83,9 +83,6 @@
         }
       },
       "put": {
-        "consumes": [
-          "application/json"
-        ],
         "produces": [
           "application/json"
         ],
