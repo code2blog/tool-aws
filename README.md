@@ -10,6 +10,7 @@ API/code2blog_demo_rest
 	dr2.2 create custom http response header
 	dr3 invoke lambda and use cors headers
 	dr4 pass http headers to lambda
+	dr5 validate input using api gateway and use body mapping template to transform input and output
 	
 standards
 	s1 define file naming standards
