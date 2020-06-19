@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "demo the use of aws rest api",
-    "version": "2020-06-17T14:09:02Z",
+    "version": "2020-06-19T14:56:45Z",
     "title": "code2blog_demo_rest"
   },
   "host": "cow8lutdyg.execute-api.us-east-2.amazonaws.com",
@@ -122,6 +122,52 @@
           }
         }
       }
+    },
+    "/square": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/Empty"
+            }
+          }
+        }
+      }
+    },
+    "/user": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/Empty"
+            }
+          }
+        }
+      }
     }
   },
   "securityDefinitions": {
@@ -135,6 +181,27 @@
     "Empty": {
       "type": "object",
       "title": "Empty Schema"
+    },
+    "user": {
+      "type": "object",
+      "required": [
+        "first_name",
+        "id",
+        "last_name"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        }
+      },
+      "title": "The root schema",
+      "description": "The root schema comprises the entire JSON document."
     }
   }
 }
