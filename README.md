@@ -17,7 +17,8 @@ standards
 	
 lambda-java/code2blog_lambda_demo
 	ld1 send some string response from lambda
-
+	ld2 write file to s3 bucket
+	
 codepen
 	ir1 write js code that invokes rest api of aws
 	
