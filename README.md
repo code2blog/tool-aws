@@ -19,6 +19,7 @@ lambda-java/code2blog_lambda_demo
 	ld1 send some string response from lambda
 	ld2 write file to s3 bucket
 	ld3 read sqs event and write to s3 
+	ld4 read from sqs and write to sqs
 	
 codepen
 	ir1 write js code that invokes rest api of aws
