@@ -5,6 +5,7 @@ import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
+import com.amazonaws.services.sqs.model.Message;
 import com.amazonaws.services.sqs.model.SendMessageRequest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -27,12 +28,15 @@ public class SqsToSqs implements RequestHandler<Map<String, Object>, String> {
         final AmazonSQS sqs = AmazonSQSClientBuilder.defaultClient();
         String queueUrl = sqs.getQueueUrl(QUEUE_NAME).getQueueUrl();
 
+        Message message = gson.fromJson(gson.toJson(records.get(0)), Message.class);
+        String body = String.format("i received a sqs message with payload=[%s]", message.getBody());
+        logger.log(body);
+
         SendMessageRequest send_msg_request = new SendMessageRequest()
                 .withQueueUrl(queueUrl)
-                .withMessageBody(String.format("i received an object of type [%s] when i looked at events.get(Records).get(0)", records.get(0).getClass()));
+                .withMessageBody(body);
         sqs.sendMessage(send_msg_request);
 
-        logger.log("message sent to sqs queue with name " + QUEUE_NAME);
         return "sqs event received";
     }
 }
