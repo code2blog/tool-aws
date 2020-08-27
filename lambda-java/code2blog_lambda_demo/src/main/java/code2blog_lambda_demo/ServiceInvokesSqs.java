@@ -8,6 +8,7 @@ import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
 import com.amazonaws.services.sqs.model.Message;
 import com.amazonaws.services.sqs.model.MessageAttributeValue;
+import com.amazonaws.services.sqs.model.ReceiveMessageRequest;
 import com.amazonaws.services.sqs.model.ReceiveMessageResult;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -27,12 +28,15 @@ public class ServiceInvokesSqs implements RequestHandler<Object, String> {
         final AmazonSQS sqs = AmazonSQSClientBuilder.defaultClient();
         String QUEUE_NAME = "MY_FIRST_QUEUE.fifo";
         String queueUrl = sqs.getQueueUrl(QUEUE_NAME).getQueueUrl();
-        ReceiveMessageResult receiveMessageResult = sqs.receiveMessage(queueUrl);
+        ReceiveMessageRequest receiveMessageRequest = new ReceiveMessageRequest(queueUrl);
+        receiveMessageRequest.setMaxNumberOfMessages(10);
+        ReceiveMessageResult receiveMessageResult = sqs.receiveMessage(receiveMessageRequest);
         logger.log("connected to queue");
         List<Message> messages = receiveMessageResult.getMessages();
         logger.log("message count : " + messages.size());
         Optional<Message> matchingMessage = messages.stream().filter(message -> {
             MessageAttributeValue value = message.getMessageAttributes().get("CorrelationId");
+            logger.log(gson.toJson(message));
             if (value == null) return false;
             logger.log("iterating messages. Found correlation id : " + value);
             return value.getStringValue().equals(correlationIdToSearch);
