@@ -30,6 +30,7 @@ public class ServiceInvokesSqs implements RequestHandler<Object, String> {
         String queueUrl = sqs.getQueueUrl(QUEUE_NAME).getQueueUrl();
         ReceiveMessageRequest receiveMessageRequest = new ReceiveMessageRequest(queueUrl);
         receiveMessageRequest.setMaxNumberOfMessages(10);
+        receiveMessageRequest.withMessageAttributeNames("All");
         ReceiveMessageResult receiveMessageResult = sqs.receiveMessage(receiveMessageRequest);
         logger.log("connected to queue");
         List<Message> messages = receiveMessageResult.getMessages();
@@ -38,7 +39,7 @@ public class ServiceInvokesSqs implements RequestHandler<Object, String> {
             MessageAttributeValue value = message.getMessageAttributes().get("CorrelationId");
             logger.log(gson.toJson(message));
             if (value == null) return false;
-            logger.log("iterating messages. Found correlation id : " + value);
+            logger.log("iterating messages. Found correlation id : " + value.getStringValue());
             return value.getStringValue().equals(correlationIdToSearch);
         }).findFirst();
 
