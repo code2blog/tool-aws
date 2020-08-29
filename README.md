@@ -29,5 +29,6 @@ codepen
 cli-scripts
 	role/01 create a role, any role 
 	role/02 get details of any one role from my account 
-
+	role/03/04/05 create and test a lambda function
+	
 </pre>
