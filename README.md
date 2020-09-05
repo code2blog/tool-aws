@@ -23,8 +23,8 @@ lambda-java/code2blog_lambda_demo
 	ld5 read sqs event and extract message payload using sqs model classes
 	ld6 execute sqs read call similiar to mq get node
 	
-lambda-nodejs/myFirstProject
-	mfp1 say hello world
+lambda-nodejs/code2blog_lambda_nodejs
+	nj1 create a nodejs lambda that replies with a hardcoded string
 	
 codepen
 	ir1 write js code that invokes rest api of aws
