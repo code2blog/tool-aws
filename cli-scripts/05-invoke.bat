@@ -1,6 +1,6 @@
 REM The following invoke example invokes the code2blog_lambda_from_cli function synchronously.
 
-aws lambda invoke --function-name code2blog_lambda_from_cli --payload '{}' response.json
+aws lambda invoke --function-name code2blog_lambda_nodejs --payload '{}' response.json
 more response.json
 
 REM output from invoke command looks something like this
@@ -12,6 +12,6 @@ set "beginComment=goto :endComment"
 }
 
 Output payload is stored in response.json file. It looks like this
-"java lambda says hello"
+"hello code2blog viewers"
 
 :endComment

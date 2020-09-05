@@ -5,5 +5,6 @@
 03 create lambda function
 04 update lambda function
 05 invoke lamada fucntion
+06 upload a zip file for nodejs lambda
 
 </pre>

@@ -23,12 +23,16 @@ lambda-java/code2blog_lambda_demo
 	ld5 read sqs event and extract message payload using sqs model classes
 	ld6 execute sqs read call similiar to mq get node
 	
+lambda-nodejs/myFirstProject
+	mfp1 say hello world
+	
 codepen
 	ir1 write js code that invokes rest api of aws
 
 cli-scripts
-	role/01 create a role, any role 
-	role/02 get details of any one role from my account 
-	role/03/04/05 create and test a lambda function
+	01 create a role, any role 
+	02 get details of any one role from my account 
+	03/04/05 create and test a lambda function
+	05/06 upload zip file for nodejs lambda and invoke it
 	
 </pre>
