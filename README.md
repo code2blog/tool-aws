@@ -30,9 +30,15 @@ codepen
 	ir1 write js code that invokes rest api of aws
 
 cli-scripts
-	01 create a role, any role 
-	02 get details of any one role from my account 
-	03/04/05 create and test a lambda function
-	05/06 upload zip file for nodejs lambda and invoke it
+	iam/01 create a role, any role 
+	iam/02 get details of any one role from my account 
+
+	lambda/01 create lambda function
+	lambda/02 update lambda function
+	lambda/03 invoke lamada fucntion
+	lambda/04 upload a zip file for nodejs lambda
+
+	apigateway/01 create rest api
+	apigateway/02 get root resource identifier of rest api
 	
 </pre>
