@@ -39,7 +39,6 @@ cli-scripts
 	lambda/03 invoke lamada fucntion
 	lambda/04 upload a zip file for nodejs lambda
 
-	apigateway/01 create rest api
-	apigateway/02 get root resource identifier of rest api
+	apigateway/01-10 create rest api which invokes nodejs lambda
 	
 </pre>

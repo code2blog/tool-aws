@@ -27,4 +27,4 @@ exports.handler = function(event, context, callback) {
     
     res.body = "Hello, " + greeter + "!";
     callback(null, res);
-};
+}
