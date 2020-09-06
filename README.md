@@ -25,6 +25,7 @@ lambda-java/code2blog_lambda_demo
 	
 lambda-nodejs/code2blog_lambda_nodejs
 	nj1 create a nodejs lambda that replies with a hardcoded string
+	nj2 create response fit for apigateway - {"statusCode":200,"headers":{"Content-Type":"*/*"},"body":"Hello, World!"}
 	
 codepen
 	ir1 write js code that invokes rest api of aws
