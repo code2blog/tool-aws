@@ -26,6 +26,6 @@ function getLocalGreeting(language) {
 
 function pickLocale() {
   const languages = ["en", "es", "cn", "fr", "ru"];
-  # We miss Python's random.choice
+  // We miss Python's random.choice
   return languages [Math.floor(Math.random() * languages.length)];
 }

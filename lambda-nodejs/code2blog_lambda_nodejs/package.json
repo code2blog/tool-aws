@@ -6,5 +6,10 @@
   "license": "MIT",
   "scripts": {
     "test": "jest"
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "config": "^3.3.1"
   }
 }

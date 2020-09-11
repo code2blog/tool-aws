@@ -6,3 +6,6 @@
 /lambda-nodejs/code2blog_lambda_nodejs.zip
 /cli-scripts/response.json
 /cli-scripts/lambda/response.json
+/lambda-nodejs/code2blog_lambda_nodejs/node_modules
+/lambda-nodejs/code2blog_lambda_nodejs/config/default.json
+/lambda-nodejs/code2blog_lambda_nodejs/package-lock.json

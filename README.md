@@ -27,6 +27,7 @@ lambda-nodejs/code2blog_lambda_nodejs
 	nj1 create a nodejs lambda that replies with a hardcoded string
 	nj2 create response fit for apigateway - {"statusCode":200,"headers":{"Content-Type":"*/*"},"body":"Hello, World!"}
 	nj3 demo unit testing frameworks such as mocha, yarn, jest
+	nj4 demo the use of mocha framework for testing aws lambdas
 	
 codepen
 	ir1 write js code that invokes rest api of aws

@@ -1,0 +1,5 @@
+    {
+        "handler":{
+            "endpoint": "https://abc.com/dev/invoke-lambda"
+        }
+    }
