@@ -42,5 +42,8 @@ cli-scripts
 	lambda/04 upload a zip file for nodejs lambda
 
 	apigateway/01-10 create rest api which invokes nodejs lambda
+
+sam-nodejs/code2blog_quick_start
+	sam-1 create lambda and rest api using serverless application model 
 	
 </pre>
