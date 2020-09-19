@@ -12,3 +12,5 @@
 .vscode
 .aws-sam
 samconfig.toml
+yarn.lock
+package-lock.json
