@@ -47,6 +47,6 @@ sam-nodejs/code2blog_quick_start
 	sam-1 create lambda and rest api using serverless application model 
 
 sam-nodejs/code2blog-mock-multiple-ws
-	mmw-1 create api gateway object that can return multiple responses json and xml based on input parameters
+	mmw-1 create api gateway object that can return multiple responses json and xml based on http query parameters
 	
 </pre>

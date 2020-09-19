@@ -23,7 +23,8 @@ exports.lambdaHandler = async (event, context) => {
         }
 
         var fs = require('fs');
-        response.body = fs.readFileSync('mock-response/widget.xml', 'utf-8');
+        var name = event.queryStringParameters.name;
+        response.body = fs.readFileSync('mock-response/'+name, 'utf-8');
 
     } catch (err) {
         console.log(err);
