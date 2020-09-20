@@ -24,7 +24,9 @@ exports.lambdaHandler = async (event, context) => {
 
         var fs = require('fs');
         var name = event.queryStringParameters.name;
+        console.info(`query parameter=[${name}]`);
         response.body = fs.readFileSync('mock-response/'+name, 'utf-8');
+        console.info(`retrieved file contents=[${response.body.substring(0,10)}...]` );
 
     } catch (err) {
         console.log(err);
