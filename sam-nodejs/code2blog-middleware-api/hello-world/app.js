@@ -16,11 +16,20 @@ let response;
  */
 exports.lambdaHandler = async (event, context) => {
     try {
+        var stage = event.requestContext.stage;
+        
+        var AWS = require("aws-sdk");
+        var s3 = new AWS.S3()
+        var params = { Bucket: 'code2blog-application-config', Key: `code2blog-middleware-api.config.${stage}.json` };
+        const data = await s3.getObject(params).promise();
+        
+        var config = JSON.stringify(data.Body.toString('utf-8'));
+
         // const ret = await axios(url);
         response = {
             'statusCode': 200,
             'body': JSON.stringify({
-                message: 'hello world',
+                message: config,
                 // location: ret.data.trim()
             })
         }
@@ -31,3 +40,12 @@ exports.lambdaHandler = async (event, context) => {
 
     return response
 };
+
+function streamToString(stream) {
+    const chunks = []
+    return new Promise((resolve, reject) => {
+        stream.on('data', chunk => chunks.push(chunk))
+        stream.on('error', reject)
+        stream.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')))
+    })
+}
