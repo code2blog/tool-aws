@@ -25,7 +25,7 @@ Resources:
             Method: get
       Policies:
         - S3ReadPolicy:
-            BucketName: !Ref "code2blog-application-config"
+            BucketName: code2blog-application-config
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
