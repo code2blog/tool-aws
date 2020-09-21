@@ -1,4 +1,4 @@
-// const axios = require('axios')
+const axios = require('axios')
 // const url = 'http://checkip.amazonaws.com/';
 let response;
 
@@ -17,20 +17,21 @@ let response;
 exports.lambdaHandler = async (event, context) => {
     try {
         var stage = event.requestContext.stage;
-        
+
         var AWS = require("aws-sdk");
         var s3 = new AWS.S3()
         var params = { Bucket: 'code2blog-application-config', Key: `code2blog-middleware-api.config.${stage}.json` };
         const data = await s3.getObject(params).promise();
-        
-        var config = JSON.stringify(data.Body.toString('utf-8'));
+
+        var config = JSON.parse(data.Body.toString('utf-8')); // this is a json object
+
+        const provider_api_response = await axios(config.api_endpoint);
 
         // const ret = await axios(url);
         response = {
             'statusCode': 200,
             'body': JSON.stringify({
-                message: config,
-                // location: ret.data.trim()
+                message: provider_api_response.data.widget.window,
             })
         }
     } catch (err) {
