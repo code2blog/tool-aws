@@ -25,7 +25,9 @@ exports.lambdaHandler = async (event, context) => {
 
         var config = JSON.parse(data.Body.toString('utf-8')); // this is a json object
 
+        console.log("invoking provider api");
         const provider_api_response = await axios(config.api_endpoint);
+        console.log(provider_api_response.data);
 
         // const ret = await axios(url);
         response = {
