@@ -26,6 +26,18 @@ Resources:
       Policies:
         - S3ReadPolicy:
             BucketName: code2blog-application-config
+  JsonTransformationFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: json-transformation/
+      Handler: app.lambdaHandler
+      Runtime: nodejs10.x
+      Events:
+        JsonTransformation:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /display
+            Method: get
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
