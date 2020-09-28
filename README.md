@@ -53,5 +53,6 @@ sam-nodejs/code2blog-mock-multiple-ws
 sam-nodejs/code2blog-middleware-api
 	ma-1 create a lambda function that takes its configuration from s3 file, and invokes another api 
 	ma-2 create a json object with different data types
+	ma-3 parse xml file and navigate through its various fields
 	
 </pre>
