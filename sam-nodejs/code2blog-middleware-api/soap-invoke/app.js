@@ -1,4 +1,5 @@
-const axios = require('axios')
+const axios = require('axios');
+const xml2js = require('xml2js');
 let response;
 
 exports.lambdaHandler = async (event, context) => {
@@ -17,10 +18,12 @@ exports.lambdaHandler = async (event, context) => {
             headers: {
                 'Content-Type': 'text/xml',
             }});
+        
+        let jsonRepresentationOfXml = await parseXml(soapResponse.data);
 
         response = {
             'statusCode': 200,
-            'body': soapResponse.data
+            'body': jsonRepresentationOfXml
         };
 
     } catch (err) {
@@ -31,3 +34,14 @@ exports.lambdaHandler = async (event, context) => {
     return response
 };
 
+async function parseXml(xmlString) {
+    const promise = await new Promise((resolve, reject) => {
+      const parser = new xml2js.Parser({ explicitArray: false });
+  
+      parser.parseString(xmlString, (error, result) => {
+        if (error) reject(error);
+        else resolve(result);
+      });
+    });
+    return promise;
+  };
