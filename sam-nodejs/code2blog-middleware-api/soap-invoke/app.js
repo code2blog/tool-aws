@@ -20,10 +20,13 @@ exports.lambdaHandler = async (event, context) => {
             }});
         
         let jsonRepresentationOfXml = await parseXml(soapResponse.data);
+        let sInnerXml = jsonRepresentationOfXml['SOAP-ENV:Envelope']['SOAP-ENV:Body']['ns1:LatLonListZipCodeResponse'].listLatLonOut['_'];
+        // console.log(sInnerXml);
+        let jsInnerXml = await parseXml(sInnerXml);
 
         response = {
             'statusCode': 200,
-            'body': jsonRepresentationOfXml
+            'body': jsInnerXml.dwml.latLonList
         };
 
     } catch (err) {
