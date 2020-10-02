@@ -55,5 +55,6 @@ sam-nodejs/code2blog-middleware-api
 	ma-2 create a json object with different data types
 	ma-3 parse xml file and navigate through its various fields
 	ma-4 invoke a soap operation from nodejs
+	ma-5 invoke soap service using proper soap client that understands wsdl
 	
 </pre>

@@ -1,4 +1,5 @@
-const soapRequest = require('easy-soap-request');
+const axios = require('axios');
+const xml2js = require('xml2js');
 let response;
 
 exports.lambdaHandler = async (event, context) => {
@@ -13,16 +14,19 @@ exports.lambdaHandler = async (event, context) => {
      </soapenv:Envelope>`;
         //
         let sUrl = 'https://graphical.weather.gov/xml/SOAP_server/ndfdXMLserver.php';
-        const requestHeaders = {
-            'Content-Type': 'text/xml;charset=UTF-8',
-            'soapAction': 'https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#LatLonListZipCode',
-        };
-
-        const {response: soapResponse} = await soapRequest({ url: sUrl, headers: requestHeaders, xml: sSoapRequest }); // Optional timeout parameter(milliseconds)
+        const soapResponse = await axios.post(sUrl, sSoapRequest, {
+            headers: {
+                'Content-Type': 'text/xml',
+            }});
+        
+        let jsonRepresentationOfXml = await parseXml(soapResponse.data);
+        let sInnerXml = jsonRepresentationOfXml['SOAP-ENV:Envelope']['SOAP-ENV:Body']['ns1:LatLonListZipCodeResponse'].listLatLonOut['_'];
+        // console.log(sInnerXml);
+        let jsInnerXml = await parseXml(sInnerXml);
 
         response = {
             'statusCode': 200,
-            'body': soapResponse.body
+            'body': jsInnerXml.dwml.latLonList
         };
 
     } catch (err) {
@@ -32,3 +36,15 @@ exports.lambdaHandler = async (event, context) => {
 
     return response
 };
+
+async function parseXml(xmlString) {
+    const promise = await new Promise((resolve, reject) => {
+      const parser = new xml2js.Parser({ explicitArray: false });
+  
+      parser.parseString(xmlString, (error, result) => {
+        if (error) reject(error);
+        else resolve(result);
+      });
+    });
+    return promise;
+  };
