@@ -17,8 +17,9 @@ exports.lambdaHandler = async (event, context) => {
         const soapResponse = await axios.post(sUrl, sSoapRequest, {
             headers: {
                 'Content-Type': 'text/xml',
-            }});
-        
+            }
+        });
+
         let jsonRepresentationOfXml = await parseXml(soapResponse.data);
         let sInnerXml = jsonRepresentationOfXml['SOAP-ENV:Envelope']['SOAP-ENV:Body']['ns1:LatLonListZipCodeResponse'].listLatLonOut['_'];
         // console.log(sInnerXml);
@@ -39,12 +40,12 @@ exports.lambdaHandler = async (event, context) => {
 
 async function parseXml(xmlString) {
     const promise = await new Promise((resolve, reject) => {
-      const parser = new xml2js.Parser({ explicitArray: false });
-  
-      parser.parseString(xmlString, (error, result) => {
-        if (error) reject(error);
-        else resolve(result);
-      });
+        const parser = new xml2js.Parser({ explicitArray: false });
+
+        parser.parseString(xmlString, (error, result) => {
+            if (error) reject(error);
+            else resolve(result);
+        });
     });
     return promise;
-  };
+};

@@ -1,4 +1,5 @@
 var soap = require('soap');
+const xml2js = require('xml2js');
 let response;
 
 exports.lambdaHandler = async (event, context) => {
@@ -17,9 +18,11 @@ exports.lambdaHandler = async (event, context) => {
             });
         });
         let jsSoapResponse = await promise;
+        let jsInnerXml = await parseXml(jsSoapResponse.listLatLonOut['$value']);
+
         response = {
             'statusCode': 200,
-            'body': jsSoapResponse.listLatLonOut
+            'body': jsInnerXml.dwml.latLonList
         };
     } catch (err) {
         console.log(err);
@@ -27,4 +30,17 @@ exports.lambdaHandler = async (event, context) => {
     }
 
     return response
+};
+
+
+async function parseXml(xmlString) {
+    const promise = await new Promise((resolve, reject) => {
+        const parser = new xml2js.Parser({ explicitArray: false });
+
+        parser.parseString(xmlString, (error, result) => {
+            if (error) reject(error);
+            else resolve(result);
+        });
+    });
+    return promise;
 };
