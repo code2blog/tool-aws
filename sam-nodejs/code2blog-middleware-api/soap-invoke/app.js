@@ -4,16 +4,14 @@ let response;
 
 exports.lambdaHandler = async (event, context) => {
     try {
-        let sUrl = 'http://localhost:7800/ComplexXml_IS?wsdl';
+        let sUrl = 'https://raw.githubusercontent.com/nurullahsahin44/https-github.com-nurullahsahin44-anketuygula/b9bd6164e3ac13aafd8610d0e4fd52f6a18d6ff5/anketUygula/anketUygula/Service%20References/WebService/WebService1.wsdl';
         var args = { input: '12345' };
         let promise = new Promise(function (resolve, reject) {
             soap.createClient(sUrl, function (err, client) {
                 // client object is created by using wsdl file by soap nodejs module
                 //Client.describe() - description of services, ports and methods as a JavaScript object
-                console.log(JSON.stringify(client.describe()));
-                client.operation1(args, function (err, result) {
-                    resolve(result);
-                });
+                console.log(client.describe());
+                console.log(JSON.stringify(client.describe() , null, 2) );
             });
         });
         let jsSoapResponse = await promise;
