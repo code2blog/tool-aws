@@ -16,3 +16,4 @@ yarn.lock
 package-lock.json
 /sam-nodejs/code2blog-middleware-api/hello-world/code2blog-middleware-api.config.Prod.json
 /sam-nodejs/code2blog-middleware-api/hello-world/code2blog-middleware-api.config.dev.json
+node_modules

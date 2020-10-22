@@ -10,20 +10,47 @@ Resources:
   SAMLogs:
     Type: AWS::Logs::LogGroup
 
+  ValidationStateMachine:
+    Type: AWS::Serverless::StateMachine
+    Properties:
+      Type: EXPRESS
+      DefinitionUri: statemachine/validator.asl.json
+      DefinitionSubstitutions:
+        ValidateOwnerFunctionArn: !GetAtt ValidateOwnerFunction.Arn
+        ValidatePropertyFunctionArn: !GetAtt ValidatePropertyFunction.Arn
+        ValidationSuccesfullFunctionArn: !GetAtt ValidationSuccesfullFunction.Arn
+        ValidationNotSuccesfullFunctionArn: !GetAtt ValidationNotSuccesfullFunction.Arn
+      Events:
+        ValidationApiEvent:
+          Type: Api
+          Properties:
+            Method: post
+            Path: /validate
+            RestApiId:
+              Ref: MyApi
+      Logging:
+        Destinations:
+          - CloudWatchLogsLogGroup:
+              LogGroupArn: !GetAtt SAMLogs.Arn
+        IncludeExecutionData: true
+        Level: ALL
+      Policies:
+        - LambdaInvokePolicy:
+            FunctionName: !Ref ValidateOwnerFunction
+        - LambdaInvokePolicy:
+            FunctionName: !Ref ValidatePropertyFunction
+        - LambdaInvokePolicy:
+            FunctionName: !Ref ValidationSuccesfullFunction
+        - LambdaInvokePolicy:
+            FunctionName: !Ref ValidationNotSuccesfullFunction
+        - CloudWatchLogsFullAccess
+
   ValidateOwnerFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: functions/
       Handler: validate-owner.lambdaHandler
       Runtime: nodejs12.x
-      Events:
-        ValidationApiEvent:
-          Type: Api
-          Properties:
-            Method: post
-            Path: /validateDummy
-            RestApiId:
-              Ref: MyApi
 
   ValidatePropertyFunction:
     Type: AWS::Serverless::Function
@@ -50,3 +77,6 @@ Outputs:
   ValidationAPIUrl:
     Description: "url to call the validation state machine"
     Value: !Sub https://${MyApi}.execute-api.${AWS::Region}.amazonaws.com/dev/
+  ValidationStateMachineArn:
+    Description: "validation state machine ARN"
+    Value: !Ref ValidationStateMachine
