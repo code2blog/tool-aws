@@ -42,4 +42,3 @@ Outputs:
   ValidationAPIUrl:
     Description: "url to call the validation state machine"
     Value: !Sub https://${MyApi}.execute-api.${AWS::Region}.amazonaws.com/dev/
-	
