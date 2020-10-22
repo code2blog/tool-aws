@@ -16,6 +16,14 @@ Resources:
       CodeUri: functions/
       Handler: validate-owner.lambdaHandler
       Runtime: nodejs12.x
+      Events:
+        ValidationApiEvent:
+          Type: Api
+          Properties:
+            Method: post
+            Path: /validateDummy
+            RestApiId:
+              Ref: MyApi
 
   ValidatePropertyFunction:
     Type: AWS::Serverless::Function

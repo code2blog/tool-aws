@@ -4,9 +4,13 @@
   "description": "",
   "main": "validate-owner.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests/unit/"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4"
   },
   "keywords": [],
-  "author": "",
+  "author": "vishnu",
   "license": "ISC"
 }
