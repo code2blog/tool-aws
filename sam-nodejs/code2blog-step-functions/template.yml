@@ -1,0 +1,45 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  MyApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: dev
+
+  SAMLogs:
+    Type: AWS::Logs::LogGroup
+
+  ValidateOwnerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/
+      Handler: validate-owner.lambdaHandler
+      Runtime: nodejs12.x
+
+  ValidatePropertyFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/
+      Handler: validate-property.lambdaHandler
+      Runtime: nodejs12.x
+
+  ValidationSuccesfullFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/
+      Handler: validation-succesfull.lambdaHandler
+      Runtime: nodejs12.x
+
+  ValidationNotSuccesfullFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/
+      Handler: validation-not-succesfull.lambdaHandler
+      Runtime: nodejs12.x
+
+Outputs:
+  ValidationAPIUrl:
+    Description: "url to call the validation state machine"
+    Value: !Sub https://${MyApi}.execute-api.${AWS::Region}.amazonaws.com/dev/
+	

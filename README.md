@@ -57,5 +57,8 @@ sam-nodejs/code2blog-middleware-api
 	ma-4 invoke a soap operation from nodejs
 	ma-5 invoke soap service using proper soap client that understands wsdl
 	ma-6 invoke soap service with lots of inner xml fields 
+
+sam-nodejs/code2blog-step-functions
+	sf-1 create step function and invoke nodejs lambda
 	
 </pre>
